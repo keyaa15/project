@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Georgia", serif;
+    background: #1e1e2f;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+    flex-direction: column;
+}
+
+/* INTRO SCREEN */
+#intro {
+    text-align: center;
+    padding: 20px;
+}
+
+#intro h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+#startBtn {
+    padding: 10px 20px;
+    border: none;
+    background: #fff;
+    color: #1e1e2f;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* ENVELOPE SCREEN */
+#envelopeScreen {
+    display: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.envelope {
+    width: 200px;
+    height: 130px;
+    background: #f5eeef;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid #e6d6d8;
+    transform-origin: top;
+    transition: transform 0.8s ease;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+/* LETTER */
+#letterBox {
+    display: none;
+    width: 80%;
+    max-width: 500px;
+    height: 600px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #fdf6e3 0px,
+        #fdf6e3 27px,
+        #d6d6d6 28px
+    );
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    overflow-y: auto;
+    color: #333;
+    font-family: "Courier New", monospace;
+}
+
+#typedText {
+    padding: 30px;
+    white-space: pre-wrap;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>I hope you read this, even if it's too late.</h1>
+    <button id="startBtn" onclick="showEnvelope()">Read it now</button>
+</div>
+
+<!-- ENVELOPE -->
+<div id="envelopeScreen" onclick="openEnvelope()">
+    <div class="envelope" id="envelope"></div>
+    <p style="margin-top:15px;">Tap the envelope</p>
+</div>
+
+<!-- LETTER -->
+<div id="letterBox">
+    <div id="typedText"></div>
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+    <source src="ikaw-lang-patutunguhan.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const message = `hi kirs, i hope you're doing okay. i've been thinking about you a lot lately, and i couldn't keep it to myself anymore.
+
+before school started, i honestly thought i was slowly moving on. but when i saw you again, i realized i wasn't. i was only distracting myself from how much i still miss you.
+
+being apart gave me a lot of time to reflect. i know i wasn't perfect, and i'm truly sorry for the ways i hurt you. if i could take those moments back, i would.
+
+i know it won't be easy for you to trust me again, and i'm not expecting everything to be okay right away. i know there will be days when you'll doubt me or remember the pain i caused, and i understand that. if you give me the chance, i'm willing to be patient and earn your trust back through my actions, not just my words.
+
+i want to relearn you again—the little things that make you smile, the things that hurt you, and how to love you better than i did before.
+
+i'm not sending this to pressure you. i just wanted to be honest.
+
+kirs, if there's still even the smallest chance, can we try again? i still believe what we had is worth fighting for.`;
+
+
+function showEnvelope() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("envelopeScreen").style.display = "block";
+}
+
+
+function openEnvelope() {
+    const envelope = document.getElementById("envelope");
+    const screen = document.getElementById("envelopeScreen");
+    const letterBox = document.getElementById("letterBox");
+    const music = document.getElementById("bgMusic");
+
+    envelope.classList.add("open");
+
+    music.volume = 0.5;
+    music.play();
+
+    setTimeout(() => {
+        screen.style.display = "none";
+        letterBox.style.display = "block";
+        typeWriter();
+    }, 900);
+}
+
+
+function typeWriter() {
+    const typedText = document.getElementById("typedText");
+    const letterBox = document.getElementById("letterBox"); // FIXED SCOPE
+    let i = 0;
+
+    function typing() {
+        if (i < message.length) {
+            typedText.textContent += message.charAt(i);
+            i++;
+            letterBox.scrollTop = letterBox.scrollHeight;
+            setTimeout(typing, 35);
+        }
+    }
+
+    typing();
+}
+
+</script>
+
+</body>
+</html>
