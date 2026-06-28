@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Georgia", serif;
+    background: #1e1e2f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* INTRO */
+.intro {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    transition: opacity 1s ease;
+    color: #fff;
+}
+
+/* BUTTON */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #f5eeef;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #b1acad;
+}
+
+/* LETTER */
+.letter {
+    display: none;
+    width: 80%;
+    max-width: 500px;
+    height: 600px;
+
+    /* CLEAN STRAIGHT LINED PAPER */
+    background: repeating-linear-gradient(
+        to bottom,
+        #fdf6e3 0px,
+        #fdf6e3 27px,
+        #d6d6d6 28px
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    font-family: "Courier New", monospace;
+    font-size: 1.1rem;
+    line-height: 1.6;
+
+    color: #333;
+
+    position: relative;
+}
+
+/* TEXT */
+#typedText {
+    padding: 30px 30px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+}
+
+/* OPTIONAL: better scrolling feel */
+.letter {
+    scroll-behavior: smooth;
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="introText">
+    i hope you read this, even if it's too late.
+</div>
+
+<button class="btn" onclick="showLetter()">Read it</button>
+
+<div class="letter" id="letterBox">
+    <div id="typedText"></div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="ikaw-lang-patutunguhan.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const message = `hi kirs, i hope you're doing okay. i've been thinking about you a lot lately, and i couldn't keep it to myself anymore.
+
+before school started, i honestly thought i was slowly moving on. but when i saw you again, i realized i wasn't. i was only distracting myself from how much i still miss you, and how much space you still take up in my thoughts, even in the quietest moments.
+
+being apart gave me a lot of time to reflect. i know i wasn't perfect, and i'm truly sorry for the ways i hurt you. there are things i said and did that i wish i could take back, because if i had the chance to do them differently, i would choose better every single time.
+
+i know it won't be easy for you to trust me again, and i'm not expecting everything to be okay right away. i understand that healing takes time, and there will still be days when memories hurt or when doubts come back. i won't rush you, and i won't force anything that you're not ready for.
+
+if you give me the chance, i'm willing to be patient—truly patient. not the kind that waits with pressure, but the kind that understands silence, distance, and slow progress. i'll prove myself through actions, not words, even if it takes a long time.
+
+i want to relearn you again—the little things that make you laugh, the way your mood changes when you're tired, the things that comfort you, and the things that hurt you. i want to understand you better than before, and love you in a way that feels safer, calmer, and more sincere than anything i've shown you in the past.
+
+and kirs… i need you to know this in the most honest way i can say it—no matter how long it takes, no matter how many days, months, or even years it may need, i will still choose you. i’m not going anywhere emotionally. you’re still the person i’m quietly rooting for, and the only one i want to walk toward when everything settles.
+
+i'm not sending this to pressure you or to rush your heart into anything. i just didn’t want to keep all of this unsaid anymore.
+
+kirs... if there's still even the smallest chance left, can we try again? i still believe what we had is worth fighting for, and i’m willing to do it properly this time.`;
+
+function showLetter() {
+    document.getElementById("introText").style.opacity = "0";
+    document.querySelector(".btn").style.display = "none";
+
+    setTimeout(() => {
+        const letterBox = document.getElementById("letterBox");
+        const typedText = document.getElementById("typedText");
+
+        letterBox.style.display = "block";
+
+        let i = 0;
+
+        function typeWriter() {
+            if (i < message.length) {
+                typedText.textContent += message.charAt(i);
+                i++;
+
+                letterBox.scrollTop = letterBox.scrollHeight;
+
+                setTimeout(typeWriter, 35);
+            }
+        }
+
+        typeWriter();
+    }, 400);
+}
+</script>
+
+</body>
+</html>
