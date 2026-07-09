@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Georgia, serif;
+    background:#efe7ff;
+    color:#4a3b63;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    min-height:100vh;
+    padding:30px;
+}
+
+.intro{
+    text-align:center;
+    font-size:1.4rem;
+    margin-bottom:25px;
+    transition:1s;
+}
+
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    background:#8d73c7;
+    color:white;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#7258af;
+    transform:scale(1.05);
+}
+
+.letter{
+    display:none;
+    width:90%;
+    max-width:700px;
+    height:600px;
+
+    margin-top:20px;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        #fffdfd 0px,
+        #fffdfd 29px,
+        #d8d8d8 30px
+    );
+
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    font-family:"Courier New", monospace;
+    color:#333;
+
+    scroll-behavior:smooth;
+}
+
+#typedText{
+    padding:35px;
+    white-space:pre-wrap;
+    line-height:30px;
+    font-size:18px;
+}
+
+
+#letterPhoto{
+    display:block;
+    opacity:0;
+
+    width:85%;
+    max-width:420px;
+
+    margin:20px auto 40px;
+
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+    transition:opacity .8s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="introText">
+    i hope you'll read this until the end, even if it's too late.
+</div>
+
+<button class="btn" onclick="showLetter()">
+    Read it
+</button>
+
+<div class="letter" id="letterBox">
+
+    <div id="typedText"></div>
+
+    <img src="photo.jpg" id="letterPhoto" alt="Photo">
+
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="libu-libong buwan.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const message = `Hi, Kirs.
+
+I’ve been staring at this chat for a while because I wasn’t sure if I should message you. A part of me kept saying to leave things as they are, but another part of me kept wondering how you’ve been. So... here I am.
+
+I hope life has been treating you kindly. I hope you’ve been eating on time, getting enough sleep, and finding little reasons to smile, even on the difficult days. I genuinely wish you’re doing okay.
+
+A lot has changed since we stopped talking. Life became busier, school started again, and everything kept moving forward. I tried to do the same. I told myself that maybe, with enough time, things would eventually stop hurting.
+
+But I realized that moving forward isn’t the same as forgetting.
+
+There are still moments when something reminds me of you—a random song, a joke I know you would've laughed at, or something that happens during my day that instinctively makes me want to tell you. It's strange how someone can still become a part of your everyday thoughts even after they're no longer part of your everyday life.
+
+Being away from you gave me a lot of time to reflect. I saw the things I failed to notice before. I understood the mistakes I made and the ways I hurt you, and I carry genuine regret for that. If I could take those moments back, I would. I'm truly sorry.
+
+I'm not sending this because I expect everything to be okay after one conversation. I know healing doesn't work that way, and I know I don't get to decide if another chance is something you even want.
+
+But I also didn't want fear to stop me from being honest.
+
+So, if it's okay to ask...
+
+Would you let me start over?
+
+Not by pretending the past never happened, but by learning from it. I want the chance to show you that I've grown—not through promises, but through consistency, patience, and the way I choose to treat you.
+
+I don't expect you to trust me immediately. I don't expect things to go back to how they were. If anything, I'd rather build something healthier than what we had before, even if it takes time.
+
+And if your answer is no, I'll respect it. I won't argue with your decision or make you feel guilty. I just wanted you to know that if there's still even the smallest space in your heart for us, I'm willing to do things the right way this time.
+
+No matter what happens, thank you for everything you shared with me. Those memories will always mean something to me.
+
+Take care of yourself, okay? I'll always be quietly rooting for your happiness.
+
+And if life ever gives us another chance to find our way back to each other, I'd still choose you.
+`;
+
+function showLetter(){
+
+    // Play music
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.play().catch(()=>{});
+
+    // Hide intro
+    document.getElementById("introText").style.opacity = "0";
+    document.querySelector(".btn").style.display = "none";
+
+    setTimeout(()=>{
+
+        const letter = document.getElementById("letterBox");
+        const typedText = document.getElementById("typedText");
+
+        letter.style.display = "block";
+
+        let i = 0;
+
+        function typeWriter(){
+
+            if(i < message.length){
+
+                typedText.textContent += message.charAt(i);
+                i++;
+
+                letter.scrollTop = letter.scrollHeight;
+
+                setTimeout(typeWriter, 80);
+
+            }else{
+
+                // Show the photo after typing finishes
+                const photo = document.getElementById("letterPhoto");
+                photo.style.opacity = "1";
+
+                // Scroll smoothly to the photo
+                setTimeout(()=>{
+                    letter.scrollTop = letter.scrollHeight;
+                },300);
+
+            }
+
+        }
+
+        typeWriter();
+
+    },400);
+
+}
+
+</script>
+
+</body>
+</html>
