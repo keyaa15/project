@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Georgia, serif;
+    background:#efe7ff;
+    color:#4a3b63;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    min-height:100vh;
+    padding:30px;
+}
+
+.intro{
+    text-align:center;
+    font-size:1.4rem;
+    margin-bottom:25px;
+    transition:1s;
+}
+
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    background:#8d73c7;
+    color:white;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#7258af;
+    transform:scale(1.05);
+}
+
+.letter{
+    display:none;
+    width:90%;
+    max-width:700px;
+    height:600px;
+
+    margin-top:20px;
+
+    background:repeating-linear-gradient(
+        to bottom,
+        #fffdfd 0px,
+        #fffdfd 29px,
+        #d8d8d8 30px
+    );
+
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    font-family:"Courier New", monospace;
+    color:#333;
+
+    scroll-behavior:smooth;
+}
+
+#typedText{
+    padding:35px;
+    white-space:pre-wrap;
+    line-height:30px;
+    font-size:18px;
+}
+
+
+#letterPhoto{
+    display:block;
+    opacity:0;
+
+    width:85%;
+    max-width:420px;
+
+    margin:20px auto 40px;
+
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+    transition:opacity .8s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="introText">
+    i hope you'll read this until the end, even if it’s too late.
+</div>
+
+<button class="btn" onclick="showLetter()">
+    Read it
+</button>
+
+<div class="letter" id="letterBox">
+
+    <div id="typedText"></div>
+
+    <img src="photo.jpg" id="letterPhoto" alt="Photo">
+
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="uuwian.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const message = `Hi, Kirs.
+
+I've been thinking about this for a while now, and I honestly wasn't sure if I should say anything. I know we've been talking again lately, and I'm really thankful for that. Even if they're just simple conversations, they've genuinely made me happy. It's nice hearing from you again, and I don't think you realize how much I've missed having you in my life.
+
+Talking to you again reminded me of so many things. Not just the memories we shared, but also how comfortable it always felt to talk to you. Even after everything we've been through, there's still a part of me that finds peace whenever we have a conversation. I didn't expect to feel that way again, but I do.
+
+Over the past few months, I've had a lot of time to reflect. I thought about us, about the way things ended, and about the mistakes I made. Looking back, I can see so many moments where I could've been more patient, listened better, understood you more, and loved you the way you deserved to be loved. I'm truly sorry for the pain I caused you. I know an apology can't change the past, but I still wanted you to know that I carry genuine regret for it.
+
+Being apart taught me lessons that I don't think I would've learned otherwise. It made me realize that love isn't just about saying "I love you." It's about showing up consistently, communicating even when it's uncomfortable, understanding each other, taking accountability, and choosing someone every single day. Those are things I understand much better now than I did before.
+
+As we've been talking again, I've realized something I can no longer ignore. My feelings for you never really disappeared. I tried convincing myself that maybe they would with time, but every conversation we've had reminded me that my heart still finds its way back to you.
+
+At the same time, these past few days reminded me of something else.
+
+I know life is different now. We both have responsibilities, school, deadlines, and days that leave us completely exhausted. I know there will be times when you're too busy to reply, too focused on your work, or simply too tired to have a conversation.
+
+And honestly, that's okay.
+
+If there's one thing I've learned, it's that love doesn't require us to talk every single day. Love isn't measured by how many messages we exchange or how quickly we reply. It's measured by understanding, patience, trust, and choosing each other even when life gets busy.
+
+I don't want you to ever feel guilty for prioritizing your studies, your responsibilities, or yourself. I know how hardworking you are, and I admire that about you. If anything, I want to be someone who supports you through those busy days—not someone who makes them heavier.
+
+If there are days when all you can tell me is, "I'm tired," I'll understand. If there are days when we barely get to talk because you're overwhelmed with school, I'll understand. I'd rather know you're taking care of yourself and working toward your dreams than feel like you have to sacrifice those things just to make me feel loved.
+
+Because no matter how busy you become...
+
+I'd still choose you.
+
+Not because you're always available, but because you're you.
+
+I'd still choose you on the quiet days, on the stressful days, on the days when life feels overwhelming. I don't need every hour of your day to know that I love you. I just want to be someone who gives you peace instead of pressure.
+
+I'm not saying this because I expect everything to go back to how it was. Honestly, I don't want us to simply go back. If we're ever given another chance, I'd rather build something healthier, stronger, and more mature than what we had before.
+
+So I just wanted to ask you something that's been in my heart for a while now.
+
+Would you let me try again?
+
+Not because I think I've earned it already, but because I want the opportunity to earn it. I want to court you again—not to pressure you or rush you into anything, but to show you that my intentions are genuine. I want to prove through consistency, patience, understanding, and my actions that I've learned from my mistakes and that I'm serious about loving you the right way this time.
+
+I know rebuilding trust takes time, and I know there may still be fears and doubts because of what happened before. I understand that completely. If you ever decide to give me that chance, I promise not to rush your healing or expect things to become okay overnight. I'll be patient because I know trust is built little by little.
+
+But if your heart has already moved on, I'll understand. I won't force you or make you feel guilty. I know another chance isn't something I'm entitled to, and I'll always respect whatever you decide.
+
+I just didn't want to spend the rest of my life wondering what would've happened if I never told you how I truly felt. If I stayed silent, I know I'd always carry that "what if" with me. So no matter what your answer is, I'm grateful that I had the courage to be honest with you.
+
+No matter what happens, I'm grateful that we've been able to talk again. Thank you for allowing me back into your life, even in the smallest way. It reminded me how much of a wonderful person you are and how grateful I'll always be for the love and memories we shared.
+
+Please continue taking care of yourself. Don't skip your meals, get enough rest whenever you can, and don't be too hard on yourself. I'll always want the best for you, no matter where life takes us.
+
+And if there's still even the smallest chance for us, I'd love to take it—slowly, sincerely, and one step at a time.
+
+Because if I had the chance to choose again, I'd still choose you.
+
+Always.
+`;
+
+function showLetter(){
+
+    // Play music
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.play().catch(()=>{});
+
+    // Hide intro
+    document.getElementById("introText").style.opacity = "0";
+    document.querySelector(".btn").style.display = "none";
+
+    setTimeout(()=>{
+
+        const letter = document.getElementById("letterBox");
+        const typedText = document.getElementById("typedText");
+
+        letter.style.display = "block";
+
+        let i = 0;
+
+        function typeWriter(){
+
+            if(i < message.length){
+
+                typedText.textContent += message.charAt(i);
+                i++;
+
+                letter.scrollTop = letter.scrollHeight;
+
+                setTimeout(typeWriter, 85);
+
+            }else{
+
+                // Show the photo after typing finishes
+                const photo = document.getElementById("letterPhoto");
+                photo.style.opacity = "1";
+
+                // Scroll smoothly to the photo
+                setTimeout(()=>{
+                    letter.scrollTop = letter.scrollHeight;
+                },300);
+
+            }
+
+        }
+
+        typeWriter();
+
+    },400);
+
+}
+
+</script>
+
+</body>
+</html>
